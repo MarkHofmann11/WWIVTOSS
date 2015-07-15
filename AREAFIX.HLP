@@ -1,0 +1,27 @@
+WWIVTOSS Area Manager Help
+
+All messages should be addressed to 'AREAFIX' (without the quotes).
+
+Your Area Manager Password goes on the subject line.
+
+The body of the message consists of the following key words, in any
+order.  Remember, key words will be processed in the order in which
+they are recieved.
+
++<areaname>           Connect an area
+-<areaname>           Disconnect an area
+%HELP                 Request this message
+%LIST                 Request a list of areas available to you
+%QUERY                Request a list of areas to which you are connected
+%UNLINKED             Request a list of areas to which you are not connected
+%COMPRESSION <type>   Change the compression type (ARC/ARJ/LZH/PAK/SQZ/ZIP/ZOO)
+%PASSWORD <password>  Change your AreaMgr password
+%+ALL                 Connect all available areas
+%-ALL                 Disconnect all areas
+[---]                 Everything below the tear line is ignored
+
+The message will be processed, and you will recieve return mail with
+the session log listed.
+
+If you have any questions, please email the sysop of this system.
+
