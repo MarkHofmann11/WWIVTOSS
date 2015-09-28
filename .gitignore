@@ -4,5 +4,7 @@
 *.PRJ
 WWIVTOSS.DAT
 *.SWP
+*.DSK
+*.SYM
 *~
 
