@@ -1,4 +1,8 @@
-WSETUP.EXE
-WSETUP.PRJ
+*.exe
+*.EXE
+*.prj
+*.PRJ
 WWIVTOSS.DAT
+*.SWP
+*~
 
