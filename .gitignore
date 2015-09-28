@@ -7,4 +7,5 @@ WWIVTOSS.DAT
 *.DSK
 *.SYM
 *~
-
+obj/
+exe/
