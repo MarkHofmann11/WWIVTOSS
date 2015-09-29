@@ -1,0 +1,11 @@
+*.exe
+*.EXE
+*.prj
+*.PRJ
+WWIVTOSS.DAT
+*.SWP
+*.DSK
+*.SYM
+*~
+obj/
+exe/
