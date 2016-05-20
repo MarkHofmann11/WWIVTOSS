@@ -1253,9 +1253,10 @@ void process_outgoing(void)
 void send_message(int mode,char *message)
 {
     char fn[80];
-    int i;
+    int i,f;
 
-    properize(fido_to_user);
+    properize(fido_to_user);  
+	/*  MMH Mod above to remove upper case Usernames/Names */
     for (i=strlen(fido_from_user);i<sizeof(fido_from_user);i++)
     {
                fido_from_user[i]='\0';
@@ -1269,6 +1270,21 @@ void send_message(int mode,char *message)
 fido_to_user==rtrim(fido_to_user);
           
      
+/* MMH mod - fix fido_from_user from being all upper case */
+
+f=1;
+for (i=0;i<strlen(fido_from_user);i++)
+  if (f) {
+      if ((fido_from_user[i] >= 'A') && (fido_from_user[i] <= 'Z'))
+         f=0;
+     } else {
+      if ((fido_from_user[i] >= 'A') && (fido_from_user[i] <= 'Z'))
+         fido_from_user[i] = fido_from_user[i] - 'A' + 'a';
+       else {
+         if ((fido_from_user[i] >= ' ') && (fido_from_user[i] <= '/'))
+         f=1;
+     }
+    }
 
 
 
