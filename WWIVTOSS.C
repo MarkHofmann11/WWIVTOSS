@@ -426,6 +426,7 @@ void send_mail2(void)
     add_post(&p);
     ++status.msgposttoday;
     close_sub();
+	
     if ((!(p.status & status_pending_net)) && (xsubs[curlsub].num_nets))
     {
         send_net_post(&p, subboards[curlsub].filename, curlsub);

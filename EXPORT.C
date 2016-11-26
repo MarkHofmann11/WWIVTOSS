@@ -85,7 +85,7 @@ void process_outgoing(void)
     char s3[181],netfile[80],s1[81],*message,s2[80],temp1[80],*buffer;
     char via_date[80],temp_type[20],log[81],initials[5],ext_tag[81],ext_fn[81];
     unsigned char ch,s[80];
-    int i,cycle,count,done,prev,j,k,length,ok3,ok2,dotcount,center,oldnetnum,success,cycle1,success1,flag,override,valid_origin;
+    int killine,i,cycle,count,done,prev,j,k,length,ok3,ok2,dotcount,center,oldnetnum,success,cycle1,success1,flag,override,valid_origin;
     unsigned short ttt;
     net_header_rec temp;
     long this_pos, msgid,end_pos;
@@ -358,12 +358,21 @@ void process_outgoing(void)
                         while (ok3>0)
                         {
                             fgets(s,80,in);
+
+
+                            if (killine) { 
+                               killine=0;
+                               this_pos = ftell(in);
+                               count=ok3;
+                               count-=strlen(s);  }
+
+
                             if (cfg.pass_origin)
                             {
                                 if (!strnicmp(s,"--- ",4))
                                 {
                                     ok3-=strlen(s);
-                                    fgets(s,80,in);
+                                    fgets(s,80,in);                           
                                     if (!strnicmp(s," * Origin:",10))
                                         valid_origin=1;  // should be 1
                                 }
@@ -399,7 +408,7 @@ void process_outgoing(void)
                                 count=ok3;
                                 count-=strlen(s);
                             }
-                            if ((!strnicmp(s,"BY:",3)) && (stricmp(fido_to_user,"ALL")==0))
+                            if (((!strnicmp(s,"BY:",3)) && (stricmp(fido_to_user,"ALL")==0)) || ((!strnicmp(s,"TO:",3)) && (stricmp(fido_to_user,"ALL")==0)))
                             {
                                 if (s[3]==' ')
                                     sprintf(fido_to_user,"%s",&s[4]);
@@ -427,8 +436,12 @@ void process_outgoing(void)
                                 if (fido_to_user[0]==' ')
                                     strcpy(&fido_to_user[0],&fido_to_user[1]);
                             }
-                            if ((!strnicmp(s,"BY:",3))) //|| (!strnicmp(s,"RE:",3)))
+
+
+
+                            if (((!strnicmp(s,"BY:",3))) || (!strnicmp(s,"TO:",3))) //|| (!strnicmp(s,"RE:",3)))
                             {
+                                killine=1;
                                 this_pos = ftell(in);
                                 count=ok3;
                                 count-=strlen(s);
@@ -438,6 +451,7 @@ void process_outgoing(void)
                                 ok3--;
 
                         }
+
                         if ((cfg.initial_quote) && (stricmp(fido_to_user,"ALL")!=0))
                         {
                             sprintf(initials,"%c",fido_to_user[0]);
@@ -572,8 +586,8 @@ void process_outgoing(void)
                                 if ((ch!=10) && (!center))
                                 {
                                     flag++;
-                                    if ((flag==1) && (cfg.initial_quote) && ((ch=='>') || (ch=='¯')))
-                                    {
+                                    if ((flag==1) && (cfg.initial_quote) && ((ch=='>') || (ch== '¯')))
+                                    {                                                                   
                                         sprintf(s1,"%s> ",initials);
                                     }
                                     else
@@ -976,7 +990,7 @@ void process_outgoing(void)
                                         strcat(s1,s2);
                                     }
 
-                                if( (strnicmp(s1,"RE:",3)) ||  (strnicmp(s1,"BY:",3)))
+                                if ((strnicmp(s1,"RE:",3)) ||  (strnicmp(s1,"BY:",3)) || (strnicmp(s1,"TO:",3)))
                                     strcat(message,s1);
                                 center=0;
                                 }
