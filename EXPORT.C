@@ -2112,7 +2112,7 @@ void pack_outbound_packets(void)
             else
             {
                 attribute=0;
-                attribute = MSGLOCAL;
+                attribute = MSGLOCAL;   
                 switch (nodes[node_num].archive_status)
                 {
                     case 0:
@@ -2165,7 +2165,7 @@ void pack_outbound_packets(void)
                 strcat(message,s3);
                 sprintf(s3,"PID: WWIVTOSS v. %s\r",VERSION);
                 strcat(message,s3);
-                sprintf(s3,"FLAGS TFS");
+                sprintf(s3,"FLAGS KFS");
                 strcat(message,s3);
                 if (cfg.set_immediate)
                     sprintf(s3," IMM\r");

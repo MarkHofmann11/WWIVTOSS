@@ -44,11 +44,11 @@
 #define MSGAREQ         0x4000          /* Audit request !!             */
 #define MSGFUPDREQ      0x8000          /* File update request !!       */
 
-#define VERSION "1.51"                 /* WWIVToss Version, Verbose    */
+#define VERSION "1.52"                 /* WWIVToss Version, Verbose    */
 #define VERSION1 1                      /* WWIVToss Version, Major      */
-#define VERSION2 50                     /* WWIVToss Version, Minor      */
+#define VERSION2 52                     /* WWIVToss Version, Minor      */
 //#define BETA                          /* Beta or Release?             */
-#define DATE "05/17/15"                 /* Release Date                 */
+#define DATE "01/12/17"                 /* Release Date                 */
 #define PROGRAM "WWIVTOSS"              /* Program Name ID              */
 #define MAX_MSG_SIZE 32000              /* Maximum Message Size         */
 static char *suffixes[8] = {

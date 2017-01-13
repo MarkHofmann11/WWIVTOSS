@@ -2598,7 +2598,10 @@ void main (int argc, char *argv[])
                 skipit=1;
             if ((!strnicmp(fdmsg.ToUser,"AREAFIX",7)) && (cfg.use_areafix))
                 skipit=0;
-            if ((fdmsg.Attr & MSGLOCAL) && (!skip_local))
+           /* if ((fdmsg.Attr & MSGLOCAL) && (!skip_local)) */
+
+              if ((fdmsg.Attr & MSGLOCAL) || (!skip_local))
+
                 skipit=1;
 
             if (!skipit)
